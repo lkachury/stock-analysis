@@ -20,14 +20,14 @@ The images below compare the stock performance between 2017 and 2018 and display
 Using the code provided, the code was refactored to loop through the data one time and collect all of the information with the following steps: 
 
 #### Step 1a:
-Create a tickerIndex variable and set it equal to zero before iterating over all the rows. You will use this tickerIndex to access the correct index across the four different arrays you’ll be using: the tickers array and the three output arrays you’ll create in Step 1b.
+> Create a tickerIndex variable and set it equal to zero before iterating over all the rows. You will use this tickerIndex to access the correct index across the four different arrays you’ll be using: the tickers array and the three output arrays you’ll create in Step 1b.
 
     '1a) Create a ticker Index
     'The tickerIndex is set to equal to zero before looping over the rows
     tickerIndex = 0
 
 #### Step 1b:
-Create three output arrays:  tickers, tickerVolumes, tickerStartingPrices, and tickerEndingPrices. The tickerVolumes array should be a Long data type. The tickerStartingPrices and tickerEndingPrices arrays should be a Single data type.
+> Create three output arrays: tickerVolumes, tickerStartingPrices, and tickerEndingPrices. The tickerVolumes array should be a Long data type. The tickerStartingPrices and tickerEndingPrices arrays should be a Single data type.
 
     '1b) Create three output arrays
     'Arrays are created for tickers and all three output arrays
@@ -35,40 +35,81 @@ Create three output arrays:  tickers, tickerVolumes, tickerStartingPrices, and t
     Dim tickerStartingPrices(12) As Single
     Dim tickerEndingPrices(12) As Single
 
-Step 2a:
+#### Step 2a:
+> Create a for loop to initialize the tickerVolumes to zero.
 
-Create a for loop to initialize the tickerVolumes to zero.
-Step 2b:
+    ''2a) Create a for loop to initialize the tickerVolumes to zero.
+    For i = 0 To 11
+        tickerVolumes(i) = 0
+        tickerStartingPrices(i) = 0
+        tickerEndingPrices(i) = 0
+    Next i
 
-Create a for loop that will loop over all the rows in the spreadsheet.
-Step 3a:
+#### Step 2b:
+> Create a for loop that will loop over all the rows in the spreadsheet.
 
-Inside the for loop in Step 2b, write a script that increases the current tickerVolumes (stock ticker volume) variable and adds the ticker volume for the current stock ticker.
-Use the tickerIndex variable as the index.
+#### Step 3a:
+> Inside the for loop in Step 2b, write a script that increases the current tickerVolumes (stock ticker volume) variable and adds the ticker volume for the current stock ticker. Use the tickerIndex variable as the index.
 
+#### Step 3b:
+> Write an if-then statement to check if the current row is the first row with the selected tickerIndex. If it is, then assign the current starting price to the tickerStartingPrices variable.
 
+#### Step 3c:
+> Write an if-then statement to check if the current row is the last row with the selected tickerIndex. If it is, then assign the current closing price to the tickerEndingPrices variable. 
 
-Your refactored code should run faster than it did in this module.
+#### Step 3d:
+> Write a script that increases the tickerIndex if the next row’s ticker doesn’t match the previous row’s ticker.
 
+    ''2b) Loop over all the rows in the spreadsheet.
+    'The tickerIndex is used to access the stock ticker index for the tickers array and all three output arrays
+    'The script loops through stock data, reading and storing all of the following values from each row: tickers, volumes, starting prices, ending prices
+    For i = 2 To RowCount
+    
+        '3a) Increase volume for current ticker
+        tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value
+        
+        '3b) Check if the current row is the first row with the selected tickerIndex.
+        'If  Then
+        If Cells(i, 1).Value = tickers(tickerIndex) And Cells(i - 1, 1).Value <> tickers(tickerIndex) Then
+        tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
+        End If
+        'End If
+        
+        '3c) check if the current row is the last row with the selected ticker
+         'If the next row’s ticker doesn’t match, increase the tickerIndex.
+        'If  Then
+        If Cells(i, 1).Value = tickers(tickerIndex) And Cells(i + 1, 1).Value <> tickers(tickerIndex) Then
+        tickerEndingPrices(tickerIndex) = Cells(i, 6).Value
+        End If
+           
+            '3d Increase the tickerIndex.
+            If Cells(i, 1).Value = tickers(tickerIndex) And Cells(i + 1, 1).Value <> tickers(tickerIndex) Then
+            tickerIndex = tickerIndex + 1
+            End If
+            
+        'End If
+    
+    Next i
 
+#### Step 4:
+> Use a for loop to loop through your arrays (tickers, tickerVolumes, tickerStartingPrices, and tickerEndingPrices) to output the “Ticker,” “Total Daily Volume,” and “Return” columns in your spreadsheet.
 
-The tickerIndex is set equal to zero before looping over the rows. (5 pt).
+    '4) Loop through your arrays to output the Ticker, Total Daily Volume, and Return.
+    'The output for the 2017 and 2018 stock analyses match the outputs from the AllStockAnalysis
+    For i = 0 To 11
+        
+        Worksheets("All Stocks Analysis").Activate
+        Cells(4 + i, 1).Value = tickers(i)
+        Cells(4 + i, 2).Value = tickerVolumes(i)
+        Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
+        
+    Next i
 
-Arrays are created for tickers, tickerVolumes, tickerStartingPrices, and tickerEndingPrices (15 pt).
+After this stock analysis ran, we confirmed the outputs for 2017 and 2018 were the same as in the original analysis. The images below compare the stock performance between 2017 and 2018 and displays their execution times with the new refactored VBA script:
 
-The tickerIndex is used to access the stock ticker index for the tickers, tickerVolumes, tickerStartingPrices, and tickerEndingPrices arrays (15 pt).
+![VBA_Challenge_2017](https://user-images.githubusercontent.com/108038989/178817941-3da911f7-a9a1-4249-b34b-5dc9b08c86e4.png)
 
-The script loops through stock data, reading and storing all of the following values from each row: tickers, tickerVolumes, tickerStartingPrices, and tickerEndingPrices (25 pt).
-
-Code for formatting the cells in the spreadsheet is working (5 pt).
-
-There are comments to explain the purpose of the code (5 pt).
-
-The outputs for the 2017 and 2018 stock analyses in the VBA_Challenge.xlsm workbook match the outputs from the AllStockAnalysis in the module (5 pt).
-
-The pop-up messages showing the elapsed run time for the script are saved as VBA_Challenge_2017.png and VBA_Challenge_2018.png (5 pt).
-
-
+![VBA_Challenge_2018](https://user-images.githubusercontent.com/108038989/178817950-88b41b91-1456-4041-834e-53689d77072e.png)
 
 ## Summary
 In a summary statement, address the following questions.
@@ -80,4 +121,5 @@ There is a detailed statement on the advantages and disadvantages of the origina
 
 Refactoring is common on the job because first attempts at code won’t always be the best way to accomplish a task. 
 
+Your refactored code should run faster than it did in this module.
 
