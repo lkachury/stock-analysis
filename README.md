@@ -17,9 +17,11 @@ The images below compare the stock performance between 2017 and 2018 and display
 
 ### Refactored 
 
-Using the starter code provided, the code was refactored to loop through the data one time and collect all of the information. 
+Using the code provided, the code was refactored to loop through the data one time and collect all of the information with the following steps: 
 
-
+    '1a) Create a ticker Index
+    'The tickerIndex is set to equal to zero before looping over the rows
+    tickerIndex = 0
 
 Your refactored code should run faster than it did in this module.
 
