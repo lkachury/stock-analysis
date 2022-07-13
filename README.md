@@ -8,14 +8,14 @@ In this module, we have been utilizing VBA to analyze stock performance in a dat
 
 ## Results
 
-### Original
+### Original VBA Code
 The images below compare the stock performance between 2017 and 2018 and displays their execution times with the original VBA script:
 
 ![Initial_2017_RunTime](https://user-images.githubusercontent.com/108038989/178812431-1655e76b-d69b-4b90-8edf-11c238eefa3f.png)
 
 ![Initial_2018_RunTime](https://user-images.githubusercontent.com/108038989/178812447-b0d60dd4-86b9-4fc2-bd68-c7aab6d41da2.png)
 
-### Refactored 
+### Refactored VBA Code
 
 Using the code provided, the code was refactored to loop through the data one time and collect all of the information with the following steps: 
 
@@ -112,14 +112,13 @@ After this stock analysis ran, we confirmed the outputs for 2017 and 2018 were t
 ![VBA_Challenge_2018](https://user-images.githubusercontent.com/108038989/178817950-88b41b91-1456-4041-834e-53689d77072e.png)
 
 ## Summary
-In a summary statement, address the following questions.
-What are the advantages or disadvantages of refactoring code?
-How do these pros and cons apply to refactoring the original VBA script?
 
-There is a detailed statement on the advantages and disadvantages of refactoring code in general (3 pt).
-There is a detailed statement on the advantages and disadvantages of the original and refactored VBA script (3 pt).
+### Advantages and Disadvantages of Refactoring Code
 
-Refactoring is common on the job because first attempts at code won’t always be the best way to accomplish a task. 
+The major advantage with refactoring code is that the code has been simplified and made more efficient. Since the code is more concise, it is able to run faster while  using less memory. The refactored code is cleaner and more organized, which allows for easier debugging and increased readibility for others. 
 
-Your refactored code should run faster than it did in this module.
+The major disadvanatge of refactoring code is that it is a lengthy and time consuming process. During the refactoring, the functionality and logic of the code might change, which can lead to varying results. 
 
+### Pros and Cons of Refactoring the Original VBA Script
+
+The major pro in refactoring the original VBA script is the increased capacity to process more data and decreased macro run time. The original code ran the 2017 analysis in 0.57 seconds and the 2018 analysis in 0.63 seconds but the refactored code ran both of these in under 0.09 seconds. Although refactoring the code took a long time, it was easier to identify errors in the code. Additionally, since the code is more streamlined, it will be easier to understand, modify, and maintain this code when we return to it at a future time to incorporate more data. 
