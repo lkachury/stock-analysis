@@ -19,9 +19,34 @@ The images below compare the stock performance between 2017 and 2018 and display
 
 Using the code provided, the code was refactored to loop through the data one time and collect all of the information with the following steps: 
 
+#### Step 1a:
+Create a tickerIndex variable and set it equal to zero before iterating over all the rows. You will use this tickerIndex to access the correct index across the four different arrays you’ll be using: the tickers array and the three output arrays you’ll create in Step 1b.
+
     '1a) Create a ticker Index
     'The tickerIndex is set to equal to zero before looping over the rows
     tickerIndex = 0
+
+#### Step 1b:
+Create three output arrays: tickerVolumes, tickerStartingPrices, and tickerEndingPrices. The tickerVolumes array should be a Long data type. The tickerStartingPrices and tickerEndingPrices arrays should be a Single data type.
+
+    '1b) Create three output arrays
+    'Arrays are created for tickers and all three output arrays
+    Dim tickerVolumes(12) As Long
+    Dim tickerStartingPrices(12) As Single
+    Dim tickerEndingPrices(12) As Single
+
+Step 2a:
+
+Create a for loop to initialize the tickerVolumes to zero.
+Step 2b:
+
+Create a for loop that will loop over all the rows in the spreadsheet.
+Step 3a:
+
+Inside the for loop in Step 2b, write a script that increases the current tickerVolumes (stock ticker volume) variable and adds the ticker volume for the current stock ticker.
+Use the tickerIndex variable as the index.
+
+
 
 Your refactored code should run faster than it did in this module.
 
