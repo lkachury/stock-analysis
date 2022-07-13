@@ -27,7 +27,7 @@ Create a tickerIndex variable and set it equal to zero before iterating over all
     tickerIndex = 0
 
 #### Step 1b:
-Create three output arrays: tickerVolumes, tickerStartingPrices, and tickerEndingPrices. The tickerVolumes array should be a Long data type. The tickerStartingPrices and tickerEndingPrices arrays should be a Single data type.
+Create three output arrays:  tickers, tickerVolumes, tickerStartingPrices, and tickerEndingPrices. The tickerVolumes array should be a Long data type. The tickerStartingPrices and tickerEndingPrices arrays should be a Single data type.
 
     '1b) Create three output arrays
     'Arrays are created for tickers and all three output arrays
